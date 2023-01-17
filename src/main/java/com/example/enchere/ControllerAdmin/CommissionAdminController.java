@@ -11,8 +11,9 @@ import com.example.enchere.ModelAdmin.Commission;
 @RequestMapping("/CommissionAdmin")
 public class CommissionAdminController {
 	@PostMapping
-	public int insertion(@RequestBody Commission commission)
+	public boolean insertion(@RequestBody Commission commission) throws Exception
 	{
-		return 0;
+		boolean com = new Commission().create(commission);
+		return com;
 	}
 }
