@@ -17,7 +17,7 @@ public class CategorieAdminController {
 	@GetMapping
 	public ArrayList<Categorie> selectAll() throws Exception
 	{
-		ArrayList<Categorie> liste = null;
+		ArrayList<Categorie> liste = new Categorie().selectall();
 		return liste;
 	}
 	

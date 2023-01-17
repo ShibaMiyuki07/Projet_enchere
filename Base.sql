@@ -54,6 +54,7 @@ INSERT INTO Categorie (categorie) values
 -- 4
 -- 5
 Create table rechargement(
+    idRechargement serial primary key not nul,
     idUtilisateur int not null references Utilisateur(idUtilisateur),
     montantrecharge float,
     dateheurechargement timestamp default current_timestamp,

@@ -3,6 +3,7 @@ package com.example.enchere.ModelAdmin;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.example.enchere.Base.Connexion;
 
@@ -52,5 +53,37 @@ public class Categorie {
 			state.close();
 		}
 		return retour;
+	}
+	
+	public ArrayList<Categorie> selectall() throws Exception
+	{
+		ArrayList<Categorie> liste = new ArrayList<>();
+		String requete = "select * from categorie";
+		Connection connex = null;
+		Statement state = null;
+		try
+		{
+			connex = Connexion.setConnect();
+			state = connex.createStatement();
+			ResultSet rs = state.executeQuery(requete);
+			while(rs.next())
+			{
+				Categorie categorie = new Categorie();
+				categorie.setIdcategorie(rs.getInt("idcategorie"));
+				categorie.setCategorie(rs.getString("categorie"));
+				categorie.setDureeEnchereCategorie(rs.getDouble("dureeencherecategorie"));
+				liste.add(categorie);
+			}
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			connex.close();
+			state.close();
+		}
+		return liste;
 	}
 }
