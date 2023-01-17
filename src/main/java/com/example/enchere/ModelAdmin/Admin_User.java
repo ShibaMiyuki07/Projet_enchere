@@ -11,6 +11,8 @@ public class Admin_User {
 	private String nom;
 	private String mdp;
 	private float compte;
+
+
 	public int getIdAdmin() {
 		return idAdmin;
 	}
@@ -64,11 +66,11 @@ public class Admin_User {
 		{
 			throw e;
 		}
-		finally
+		/*finally
 		{
 			connex.close();
 			state.close();
-		}
+		}*/
 		return utilisateur;
 		
 	}

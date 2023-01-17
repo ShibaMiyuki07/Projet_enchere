@@ -23,7 +23,7 @@ public class CategorieAdminController {
 	{
 		ArrayList<Categorie> liste = new Categorie().selectall();
 		ModelAdmin.addAttribute("categ", liste);
-		return "index";
+		return "";
 	}
 	
 	@PostMapping
