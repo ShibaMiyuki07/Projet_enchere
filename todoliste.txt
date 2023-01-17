@@ -7,3 +7,7 @@ Cote admin :
 	-Commission(Calcul commission)
 	-Solde(par enchere)
 	-Tableau Statistique(order by categorie,by utilisateur(vendeur),by utilisateur(acheteur));
+
+	Fonction : 
+	-liste(categorie,solde,rechargement)
+	-insert(categorie,commission)
