@@ -116,3 +116,5 @@ INSERT INTO commission (idEnchere,commission) values
 );
 
 create or replace view v_utilisateur_rechargement as select utilisateur.*,montantrecharge,dateheurechargement,validation from utilisateur,rechargement where utilisateur.idutilisateur = rechargement.idutilisateur;
+
+create or replace view rechargement_non_valide as select * from v_utilisateur_rechargement where validation = 0;
