@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Connexion {
-	private static String url = "jdbc:postgresql://	floppy.db.elephantsql.com/msreixuv";
-    private static String user="msreixuv";
-    private static String passwd = "OPAyJLGk6dUqOqgTMwMR0rBa31AyjYY0";
+	private static String url = "jdbc:postgresql://containers-us-west-73.railway.app:7117/railway";
+    private static String user="postgres";
+    private static String passwd = "VD0XBBer54mRfm5WwIrw";
 	private static Connection connect;
 	public static Connection setConnect()
 	{
