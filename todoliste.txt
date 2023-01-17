@@ -11,3 +11,5 @@ Cote admin :
 	Fonction : 
 	-liste(Xcategorie,solde,Xrechargement)
 	-insert(Xcategorie,Xcommission,Xrechargement)
+
+	
