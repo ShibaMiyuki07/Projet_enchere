@@ -9,5 +9,5 @@ Cote admin :
 	-Tableau Statistique(order by categorie,by utilisateur(vendeur),by utilisateur(acheteur));
 
 	Fonction : 
-	-liste(categorie,solde,Xrechargement)
-	-insert(Xcategorie,commission,Xrechargement)
+	-liste(Xcategorie,solde,Xrechargement)
+	-insert(Xcategorie,Xcommission,Xrechargement)
