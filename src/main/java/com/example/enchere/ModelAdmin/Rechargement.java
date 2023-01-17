@@ -1,6 +1,10 @@
 package com.example.enchere.ModelAdmin;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.Statement;
+
+import com.example.enchere.Base.Connexion;
 
 public class Rechargement {
 	private int idutilisateur;
@@ -19,6 +23,10 @@ public class Rechargement {
 	public void setMontantrecharge(float montantrecharge) {
 		this.montantrecharge = montantrecharge;
 	}
+	public void setMontantrecharge(String montant)
+	{
+		this.montantrecharge = Float.parseFloat(montant);
+	}
 	public Date getDateheurechargement() {
 		return dateheurechargement;
 	}
@@ -32,6 +40,30 @@ public class Rechargement {
 		this.validation = validation;
 	}
 	
-	
+	public boolean create(Rechargement recharge) throws Exception
+	{
+		boolean retour = false;
+		Connection connex = null;
+		Statement state = null;
+		try
+		{
+			connex = Connexion.setConnect();
+			state = connex.createStatement();
+			String requete = "insert into rechargement values('"+recharge.getIdutilisateur()+"','"+recharge.getMontantrecharge()+"')";
+			state.execute(requete);
+			retour = true;
+		}
+		catch(Exception e)
+		{
+			throw new Exception("L'insertion du rechargement est impossible");
+		}
+		finally
+		{
+			connex.close();
+			state.close();
+		}
+		return retour;
+		
+	}
 	
 }

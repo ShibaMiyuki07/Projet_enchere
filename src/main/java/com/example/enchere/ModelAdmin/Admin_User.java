@@ -63,6 +63,11 @@ public class Admin_User {
 		{
 			throw e;
 		}
+		finally
+		{
+			connex.close();
+			state.close();
+		}
 		return utilisateur;
 		
 	}
