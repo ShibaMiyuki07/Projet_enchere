@@ -1,9 +1,15 @@
 package com.example.enchere.ModelAdmin;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import com.example.enchere.Base.Connexion;
+
 public class Admin_User {
 	private int idAdmin;
 	private String nom;
-	private String prenom;
+	private String mdp;
 	private float compte;
 	public int getIdAdmin() {
 		return idAdmin;
@@ -17,11 +23,12 @@ public class Admin_User {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public String getPrenom() {
-		return prenom;
+	
+	public String getMdp() {
+		return mdp;
 	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
 	}
 	public float getCompte() {
 		return compte;
@@ -30,5 +37,33 @@ public class Admin_User {
 		this.compte = compte;
 	}
 	
-	
+	public Admin_User login(Admin_User admin) throws Exception
+	{
+		String requete = "select * from admin where nom='"+admin.getNom()+"' and mdp='"+admin.getMdp()+"'";
+		Connection connex = null;
+		Statement state = null;
+		Admin_User utilisateur = new Admin_User();
+		try
+		{
+			connex = Connexion.setConnect();
+			state = connex.createStatement();
+			ResultSet rs = state.executeQuery(requete);
+			int nbr = 0;
+			while(rs.next())
+			{
+				utilisateur.setIdAdmin(rs.getInt("idadmin"));
+				utilisateur.setNom(rs.getString("nom"));
+			}
+			if(nbr == 0)
+			{
+				throw new Exception("L'utilisateur n'existe pas");
+			}
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		return utilisateur;
+		
+	}
 }

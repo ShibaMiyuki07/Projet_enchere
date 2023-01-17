@@ -11,8 +11,9 @@ import com.example.enchere.ModelAdmin.Admin_User;
 @RequestMapping("/Admin")
 public class UserAdminController {
 	@PostMapping("/LoginAdmin")
-	public Admin_User login(@RequestBody Admin_User user)
+	public Admin_User login(@RequestBody Admin_User user) throws Exception
 	{
-		return null;
+		Admin_User login = new Admin_User().login(user);
+		return login;
 	}
 }
