@@ -3,13 +3,14 @@ package com.example.enchere.ModelAdmin;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 
 import com.example.enchere.Base.Connexion;
 
 public class Rechargement {
 	private int idutilisateur;
 	private float montantrecharge;
-	private Date dateheurechargement;
+	private LocalDateTime dateheurechargement;
 	private int validation;
 	public int getIdutilisateur() {
 		return idutilisateur;
@@ -27,10 +28,11 @@ public class Rechargement {
 	{
 		this.montantrecharge = Float.parseFloat(montant);
 	}
-	public Date getDateheurechargement() {
+	
+	public LocalDateTime getDateheurechargement() {
 		return dateheurechargement;
 	}
-	public void setDateheurechargement(Date dateheurechargement) {
+	public void setDateheurechargement(LocalDateTime dateheurechargement) {
 		this.dateheurechargement = dateheurechargement;
 	}
 	public int getValidation() {
