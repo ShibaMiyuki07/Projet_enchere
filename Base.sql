@@ -54,7 +54,7 @@ INSERT INTO Categorie (categorie) values
 -- 4
 -- 5
 Create table rechargement(
-    idRechargement serial primary key not nul,
+    idRechargement serial primary key not null,
     idUtilisateur int not null references Utilisateur(idUtilisateur),
     montantrecharge float,
     dateheurechargement timestamp default current_timestamp,
@@ -119,3 +119,7 @@ INSERT INTO commission (idEnchere,commission) values
 create or replace view v_utilisateur_rechargement as select utilisateur.*,montantrecharge,dateheurechargement,validation from utilisateur,rechargement where utilisateur.idutilisateur = rechargement.idutilisateur;
 
 create or replace view rechargement_non_valide as select * from v_utilisateur_rechargement where validation = 0;
+
+create or replace view v_enchere_surencherir as select enchere.idenchere,dureeenchere,description,dateheureenchere,montant from enchere,surencherir where enchere.idenchere = surencherir.idenchere;
+
+create or replace view enchere_solde as select idenchere,max(montant) as montant,dateheureenchere from v_enchere_surencherir group by idenchere,dateheureenchere;
