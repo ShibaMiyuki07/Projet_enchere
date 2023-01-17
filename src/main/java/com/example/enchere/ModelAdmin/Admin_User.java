@@ -53,6 +53,7 @@ public class Admin_User {
 			{
 				utilisateur.setIdAdmin(rs.getInt("idadmin"));
 				utilisateur.setNom(rs.getString("nom"));
+				nbr++;
 			}
 			if(nbr == 0)
 			{
