@@ -36,4 +36,11 @@ public class RechargementAdminController {
 		ArrayList<V_Utilisateur_Rechargement> liste  = new V_Utilisateur_Rechargement().selectById(id);
 		return liste;
 	}
+	
+	@GetMapping("/liste_non_valide")
+	public ArrayList<V_Utilisateur_Rechargement> select_non_valide() throws Exception
+	{
+		ArrayList<V_Utilisateur_Rechargement> liste  = new V_Utilisateur_Rechargement().select_non_valide();
+		return liste;
+	}
 }

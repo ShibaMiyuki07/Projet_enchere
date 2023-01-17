@@ -128,4 +128,43 @@ public class V_Utilisateur_Rechargement extends Rechargement{
 		}
 		return liste;
 	}
+	
+	
+	public ArrayList<V_Utilisateur_Rechargement> select_non_valide() throws Exception
+	{
+		String requete = "select * from rechargement_non_valide";
+		Connection connex = null;
+		Statement state = null;
+		ArrayList<V_Utilisateur_Rechargement> liste = new ArrayList<>();
+		try
+		{
+			connex = Connexion.setConnect();
+			state = connex.createStatement();
+			ResultSet rs = state.executeQuery(requete);
+			while(rs.next())
+			{
+				V_Utilisateur_Rechargement get = new V_Utilisateur_Rechargement();
+				get.setIdutilisateur(rs.getInt("idutilisateur"));
+				get.setNom(rs.getString("nom"));
+				get.setPrenom(rs.getString("prenom"));
+				get.setEmail(rs.getString("email"));
+				get.setSolde_compte(rs.getFloat("solde_compte"));
+				get.setMontantrecharge(rs.getFloat("montantrecharge"));
+				get.setValidation(rs.getInt("validation"));
+				liste.add(get);
+			}
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			connex.close();
+			state.close();
+		}
+		return liste;
+	}
+	
+	
 }
