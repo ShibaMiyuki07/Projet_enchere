@@ -105,7 +105,7 @@ public class V_Utilisateur_Rechargement extends Rechargement{
 		String requete = "select * from v_utilisateur_rechargement where idutilisateur='"+id+"'";
 		Connection connex = null;
 		Statement state = null;
-		ArrayList<V_Utilisateur_Rechargement> liste = new ArrayList<>();
+		ArrayList<V_Utilisateur_Rechargement> liste = new ArrayList<V_Utilisateur_Rechargement>();
 		try
 		{
 			connex = new Connexion().setConnect();

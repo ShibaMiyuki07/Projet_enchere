@@ -2,6 +2,7 @@ package com.example.enchere.ModelClient;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.example.enchere.Base.Connexion;
@@ -123,6 +124,40 @@ public class Utilisateur {
 			}
 		}
 		return token;
+	}
+	
+	public Utilisateur selectById(int idutiilsateur) throws Exception
+	{
+		Utilisateur retour = new Utilisateur();
+		String requete = "select * from utilisateur where idutilisateur='"+idutiilsateur+"'";
+		Connection connex = null;
+		Statement state = null;
+		try
+		{
+			connex = new Connexion().setConnect();
+			state = connex.createStatement();
+			ResultSet rs = state.executeQuery(requete);
+			while(rs.next())
+			{
+				retour.setSolde_compte(rs.getFloat("solde_compte"));
+			}
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			if(state != null)
+			{
+				state.close();
+			}
+			if(connex != null)
+			{
+				connex.close();
+			}
+		}
+		return retour;
 	}
 	
 	public boolean inscription(Utilisateur utilisateur) throws Exception

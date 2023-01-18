@@ -3,13 +3,13 @@ FrontOffice :
 	-XListe enchere by id
 	-XListe enchere apres recherche
 	-XDetails de chaque enchere
-	-Login 
-	-Solde utilisateur
-	-Demande de rechargement
+	-XLogin 
+	-XSolde utilisateur
+	-XDemande de rechargement+rechargement de compte utilisateur
 	-Ajout d'enchere(invalide si dureeajoute>dureeCategorie)
 	-Bloque l'utilisateur a participer a son propre enchere
 	-historique	
 
 	A corriger :
-		-Token inscription ts mety
-		-Token Login
+		-Token inscription ts mety(vita)
+		-Token Login(vita)

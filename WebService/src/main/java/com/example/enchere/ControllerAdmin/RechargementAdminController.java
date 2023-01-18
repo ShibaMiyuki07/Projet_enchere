@@ -18,11 +18,10 @@ import com.example.enchere.ModelAdmin.Vue.V_Utilisateur_Rechargement;
 @RequestMapping("/RechargementAdmin")
 public class RechargementAdminController {
 	
-	@PostMapping
-	public boolean insertion(@RequestBody Rechargement recharge) throws Exception
+	@GetMapping("/validation/{idrechargement}")
+	public boolean validation_rechargement(@PathVariable("idrechargement") int idrechargement) throws Exception
 	{
-		boolean rech = new Rechargement().create(recharge);
-		return rech;
+		return new Rechargement().validation_insertion(idrechargement);
 	}
 	
 	@GetMapping
