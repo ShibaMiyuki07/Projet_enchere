@@ -123,8 +123,6 @@ public class Rechargement {
 			float total = recharge.getMontantrecharge()+user.getSolde_compte();
 			String requete1 = "update utilisateur set solde_compte='"+total+"' where idutilisateur='"+recharge.getIdutilisateur()+"'";
 			String requete2="update rechargement set validation=1 , dateheurechargement=now() where idrechargement='"+idrechargement+"'";
-			System.out.println(requete1);
-			System.out.println(requete2);
 			PreparedStatement stat1 = connex.prepareStatement(requete1);
 			PreparedStatement stat2 = connex.prepareStatement(requete2);
 			stat1.executeUpdate();

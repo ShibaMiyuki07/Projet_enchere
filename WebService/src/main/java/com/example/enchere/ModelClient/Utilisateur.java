@@ -2,7 +2,6 @@ package com.example.enchere.ModelClient;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.example.enchere.Base.Connexion;

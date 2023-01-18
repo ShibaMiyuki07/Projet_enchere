@@ -1,10 +1,8 @@
 package com.example.enchere.ModelAdmin.Vue;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.example.enchere.Base.Connexion;
