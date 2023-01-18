@@ -60,8 +60,14 @@ public class Rechargement {
 		}
 		finally
 		{
-			connex.close();
-			state.close();
+			if(state != null)
+			{
+				state.close();
+			}
+			if(connex != null)
+			{
+				connex.close();
+			}
 		}
 		return retour;
 		

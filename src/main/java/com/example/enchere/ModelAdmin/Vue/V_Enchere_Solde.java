@@ -61,8 +61,15 @@ public class V_Enchere_Solde {
 		}
 		finally
 		{
-			connex.close();
-			state.close();
+			if(state != null)
+			{
+				
+				state.close();
+			}
+			if(connex != null)
+			{
+				connex.close();
+			}
 		}
 		return liste;
 	}
