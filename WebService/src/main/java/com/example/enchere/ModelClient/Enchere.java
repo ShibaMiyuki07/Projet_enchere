@@ -1,6 +1,12 @@
 package com.example.enchere.ModelClient;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.example.enchere.Base.Connexion;
 
 public class Enchere {
 	private int idenchere;
@@ -67,5 +73,61 @@ public class Enchere {
 		this.etat = etat;
 	}
 	
+	public ArrayList<Enchere> selection(String condition) throws Exception
+	{
+		String requete = "select * from enchere "+condition;
+		Connection connex = null;
+		Statement state = null;
+		ArrayList<Enchere> liste = new ArrayList<>();
+		try 
+		{
+			connex = new Connexion().setConnect();
+			state = connex.createStatement();
+			 ResultSet rs = state.executeQuery(requete);
+			 while(rs.next())
+			 {
+				 Enchere enchere = new Enchere();
+				 enchere.setIdenchere(rs.getInt("idenchere"));
+				 enchere.setIdutilisateur(rs.getInt("idutilisateur"));
+				 enchere.setIdcategorie(rs.getInt("idcategorie"));
+				 enchere.setDureeenchere(rs.getDouble("dureeenchere"));
+				 enchere.setDescription(rs.getString("description"));
+				 enchere.setDateheureenchere(rs.getDate("dateheureenchere"));
+				 enchere.setPrixdevente(rs.getFloat("prixdevente"));
+				 enchere.setPrixminimum(rs.getFloat("prixminimum"));
+				 enchere.setEtat(rs.getInt("etat"));
+				 liste.add(enchere);
+			 }
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			if(state != null)
+			{
+				
+				state.close();
+			}
+			if(connex != null)
+			{
+				connex.close();
+			}
+		}
+		return liste;
+	}
+	public ArrayList<Enchere> selectById(int id) throws Exception
+	{
+		return selection(" where idenchere='"+id+"'");
+	}
+	public ArrayList<Enchere> select_valide() throws Exception
+	{
+		return selection(" where dateheureenchere>now()");
+	}
+	public ArrayList<Enchere> selectall() throws Exception
+	{
+		return selection("");
+	}
 	
 }
