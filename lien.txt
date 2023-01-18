@@ -1,0 +1,19 @@
+Lien :https://projetenchere-production.up.railway.app/
+
+Login Admin = /Admin/LoginAdmin (POST)
+
+Categorie = 
+	-liste = /CategorieAdmin(GET)
+	-insertion = /CategorieAdmin(POST)
+
+Commission = 
+	-insertion = /CommissionAdmin(POST)
+
+RechargementAdmin = 
+	-insertion = /RechargementAdmin(POST)
+	-liste = /RechargementAdmin(GET)
+	-listeById = /RechargementAdmin/1 (GET)
+	-liste des rechargements non validés = /RechargementAdmin/liste_non_valide(GET)
+
+Solde_enchere : 
+	-liste = /Solde_Enchere(GET)
