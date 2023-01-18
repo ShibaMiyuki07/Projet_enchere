@@ -43,7 +43,7 @@ public class V_Enchere_Solde {
 		ArrayList<V_Enchere_Solde> liste = new ArrayList<>();
 		try
 		{	
-			connex = Connexion.setConnect();
+			connex = new Connexion().setConnect();
 			state = connex.createStatement();
 			ResultSet rs = state.executeQuery(requete);
 			while(rs.next())

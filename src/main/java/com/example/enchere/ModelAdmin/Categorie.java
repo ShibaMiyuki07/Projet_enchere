@@ -38,7 +38,7 @@ public class Categorie {
 		boolean retour = false;
 		try
 		{
-			connex = Connexion.setConnect();
+			connex = new Connexion().setConnect();
 			state = connex.createStatement();
 			state.execute(requete);
 			retour = true;
@@ -70,7 +70,7 @@ public class Categorie {
 		Statement state = null;
 		try
 		{
-			connex = Connexion.setConnect();
+			connex = new Connexion().setConnect();
 			state = connex.createStatement();
 			ResultSet rs = state.executeQuery(requete);
 			while(rs.next())

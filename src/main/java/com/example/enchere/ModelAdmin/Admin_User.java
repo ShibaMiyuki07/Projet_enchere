@@ -45,7 +45,7 @@ public class Admin_User {
 		Admin_User utilisateur = new Admin_User();
 		try
 		{
-			connex = Connexion.setConnect();
+			connex = new Connexion().setConnect();
 			state = connex.createStatement();
 			ResultSet rs = state.executeQuery(requete);
 			int nbr = 0;
