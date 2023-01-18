@@ -30,9 +30,15 @@ public class UserAdminController {
 	{
 		user.setNom(request.getParameter("data01"));
 		user.setMdp(request.getParameter("data02"));
-		Admin_User login = new Admin_User().login(user);
-		ArrayList<Categorie> liste = new Categorie().selectall();
-		ModelAdmin.addAttribute("categ", liste);
-		return "liste_categ";
+		boolean login = new Admin_User().login(user);
+		if(login == true){
+			ArrayList<Categorie> liste = new Categorie().selectall();
+			ModelAdmin.addAttribute("categ", liste);
+			return "liste_categ";
+		}else{
+			String message = "Utilisateur inéxistant";
+			ModelAdmin.addAttribute("err", message);
+			return "index";
+		}
 	}
 }

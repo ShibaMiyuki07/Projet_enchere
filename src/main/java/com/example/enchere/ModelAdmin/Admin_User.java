@@ -39,12 +39,14 @@ public class Admin_User {
 		this.compte = compte;
 	}
 	
-	public Admin_User login(Admin_User admin) throws Exception
+	public boolean login(Admin_User admin) throws Exception
 	{
 		String requete = "select * from admin where nom='"+admin.getNom()+"' and mdp='"+admin.getMdp()+"'";
 		Connection connex = null;
 		Statement state = null;
 		Admin_User utilisateur = new Admin_User();
+		String message = "Utilisateur inéxistante";
+		boolean approved = false;
 		try
 		{
 			connex = Connexion.setConnect();
@@ -56,10 +58,12 @@ public class Admin_User {
 				utilisateur.setIdAdmin(rs.getInt("idadmin"));
 				utilisateur.setNom(rs.getString("nom"));
 				nbr++;
-			}
-			if(nbr == 0)
+			}if(nbr != 0){
+				approved = true;
+			}else if(nbr == 0)
 			{
-				throw new Exception("L'utilisateur n'existe pas");
+//				throw new Exception(message);
+				approved = false;
 			}
 		}
 		catch(Exception e)
@@ -71,7 +75,7 @@ public class Admin_User {
 			connex.close();
 			state.close();
 		}*/
-		return utilisateur;
+		return approved;
 		
 	}
 }
