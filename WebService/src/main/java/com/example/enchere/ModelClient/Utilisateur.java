@@ -105,7 +105,6 @@ public class Utilisateur {
 				token.setIdutilisateur(rs.getInt("idutilisateur"));
 				token.setToken(rs.getString("token"));
 			}
-			System.out.print(id);
 		}
 		catch(Exception e)
 		{
@@ -142,8 +141,42 @@ public class Utilisateur {
 			Token token = new Token();
 			String requete2 = "insert into token values('"+token.tokengenerator(utilisateur.getEmail(), utilisateur.getMdp())+"','"+token.getExpire()+"','"+user+"')";		
 			state.execute(requete2);
-			System.out.print(user);
 			retour = true;
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			if(state != null)
+			{
+				
+				state.close();
+			}
+			if(connex != null)
+			{
+				connex.close();
+			}
+		}
+		return retour;
+	}
+	
+	public float solde(String token) throws Exception
+	{
+		float retour = 0;
+		String requete = "select * from v_utilisateur_token where token='"+token+"'";
+		Connection connex = null;
+		Statement state = null;
+		try
+		{
+			connex = new Connexion().setConnect();
+			state = connex.createStatement();
+			ResultSet rs = state.executeQuery(requete);
+			while(rs.next())
+			{
+				retour = rs.getFloat("solde_compte");
+			}
 		}
 		catch(Exception e)
 		{
