@@ -1,8 +1,8 @@
 FrontOffice : 
 	-XListe des encheres
 	-XListe enchere by id
-	-Liste enchere apres recherche
-	-Details de chaque enchere
+	-XListe enchere apres recherche
+	-XDetails de chaque enchere
 	-Login 
 	-Solde utilisateur
 	-Demande de rechargement
