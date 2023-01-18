@@ -29,7 +29,7 @@ public class Commission {
 		boolean retour = false;
 		try
 		{
-			connex = new Connexion().setConnect();
+			connex = Connexion.setConnect();
 			state = connex.createStatement();
 			state.execute(requete);
 			retour = true;
@@ -40,15 +40,8 @@ public class Commission {
 		}
 		finally
 		{
-			if(state != null)
-			{
-				
-				state.close();
-			}
-			if(connex != null)
-			{
-				connex.close();
-			}
+			connex.close();
+			state.close();
 		}
 		return retour;
 	}

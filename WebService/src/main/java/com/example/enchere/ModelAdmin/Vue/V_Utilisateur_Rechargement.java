@@ -65,7 +65,7 @@ public class V_Utilisateur_Rechargement extends Rechargement{
 		ArrayList<V_Utilisateur_Rechargement> liste = new ArrayList<>();
 		try
 		{
-			connex = new Connexion().setConnect();
+			connex = Connexion.setConnect();
 			state = connex.createStatement();
 			ResultSet rs = state.executeQuery(requete);
 			while(rs.next())
@@ -87,15 +87,8 @@ public class V_Utilisateur_Rechargement extends Rechargement{
 		}
 		finally
 		{
-			if(state != null)
-			{
-				
-				state.close();
-			}
-			if(connex != null)
-			{
-				connex.close();
-			}
+			connex.close();
+			state.close();
 		}
 		return liste;
 	}
@@ -108,7 +101,7 @@ public class V_Utilisateur_Rechargement extends Rechargement{
 		ArrayList<V_Utilisateur_Rechargement> liste = new ArrayList<>();
 		try
 		{
-			connex = new Connexion().setConnect();
+			connex = Connexion.setConnect();
 			state = connex.createStatement();
 			ResultSet rs = state.executeQuery(requete);
 			while(rs.next())
@@ -130,15 +123,8 @@ public class V_Utilisateur_Rechargement extends Rechargement{
 		}
 		finally
 		{
-			if(state != null)
-			{
-				
-				state.close();
-			}
-			if(connex != null)
-			{
-				connex.close();
-			}
+			connex.close();
+			state.close();
 		}
 		return liste;
 	}
@@ -152,7 +138,7 @@ public class V_Utilisateur_Rechargement extends Rechargement{
 		ArrayList<V_Utilisateur_Rechargement> liste = new ArrayList<>();
 		try
 		{
-			connex = new Connexion().setConnect();
+			connex = Connexion.setConnect();
 			state = connex.createStatement();
 			ResultSet rs = state.executeQuery(requete);
 			while(rs.next())
@@ -174,15 +160,8 @@ public class V_Utilisateur_Rechargement extends Rechargement{
 		}
 		finally
 		{
-			if(state != null)
-			{
-				
-				state.close();
-			}
-			if(connex != null)
-			{
-				connex.close();
-			}
+			connex.close();
+			state.close();
 		}
 		return liste;
 	}

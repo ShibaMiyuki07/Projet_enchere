@@ -38,7 +38,7 @@ public class Categorie {
 		boolean retour = false;
 		try
 		{
-			connex = new Connexion().setConnect();
+			connex = Connexion.setConnect();
 			state = connex.createStatement();
 			state.execute(requete);
 			retour = true;
@@ -49,15 +49,8 @@ public class Categorie {
 		}
 		finally
 		{
-			if(state != null)
-			{
-				
-				state.close();
-			}
-			if(connex != null)
-			{
-				connex.close();
-			}
+			connex.close();
+			state.close();
 		}
 		return retour;
 	}
@@ -70,7 +63,7 @@ public class Categorie {
 		Statement state = null;
 		try
 		{
-			connex = new Connexion().setConnect();
+			connex = Connexion.setConnect();
 			state = connex.createStatement();
 			ResultSet rs = state.executeQuery(requete);
 			while(rs.next())
@@ -86,18 +79,10 @@ public class Categorie {
 		{
 			throw e;
 		}
-		finally
+		/*finally
 		{
-			if(state != null)
-			{
-				
-				state.close();
-			}
-			if(connex != null)
-			{
-				connex.close();
-			}
-		}
+			connex.close();
+		}*/
 		return liste;
 	}
 }

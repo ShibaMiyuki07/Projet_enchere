@@ -2,7 +2,6 @@ package com.example.enchere.ControllerAdmin;
 
 import java.util.ArrayList;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.enchere.ModelAdmin.Vue.V_Enchere_Solde;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/Solde_enchere")
 public class Solde_EnchereController {
 	
