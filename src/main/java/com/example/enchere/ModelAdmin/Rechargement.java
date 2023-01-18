@@ -48,7 +48,7 @@ public class Rechargement {
 		Statement state = null;
 		try
 		{
-			connex = Connexion.setConnect();
+			connex = new Connexion().setConnect();
 			state = connex.createStatement();
 			String requete = "insert into rechargement values('"+recharge.getIdutilisateur()+"','"+recharge.getMontantrecharge()+"')";
 			state.execute(requete);
@@ -63,10 +63,6 @@ public class Rechargement {
 			if(state != null)
 			{
 				state.close();
-			}
-			if(connex != null)
-			{
-				connex.close();
 			}
 		}
 		return retour;
