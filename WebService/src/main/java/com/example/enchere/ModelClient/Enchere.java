@@ -129,5 +129,9 @@ public class Enchere {
 	{
 		return selection("");
 	}
+	public ArrayList<Enchere> selectRecherche(String recherche) throws Exception
+	{
+		return selection(" where description like '%"+recherche+"%'");
+	}
 	
 }

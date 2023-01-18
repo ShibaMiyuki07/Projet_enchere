@@ -1,6 +1,6 @@
 FrontOffice : 
-	-Liste des encheres
-	-Liste enchere by id
+	-XListe des encheres
+	-XListe enchere by id
 	-Liste enchere apres recherche
 	-Details de chaque enchere
 	-Login 
