@@ -20,7 +20,7 @@ Create table utilisateur(
     nom varchar(20) not null,
     prenom varchar(20) not null,
     email varchar(20) not null,
-    mdp varchar(20) not null,
+    mdp text not null,
     solde_compte float default 0
 );
 INSERT INTO utilisateur (nom, prenom,email,mdp,solde_compte) values
@@ -113,7 +113,7 @@ INSERT INTO commission (idEnchere,commission) values
 
 
  create table token(
-     id serial primary key,token text,expire date,idutilisateur int
+    token text,expire date,idutilisateur int
 );
 
 create or replace view v_utilisateur_rechargement as select utilisateur.*,montantrecharge,dateheurechargement,validation from utilisateur,rechargement where utilisateur.idutilisateur = rechargement.idutilisateur;

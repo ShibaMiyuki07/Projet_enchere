@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.example.enchere.Base.Connexion;
+import com.example.enchere.Util.Token;
 
 public class Utilisateur {
 	private int idutiilisateur;
@@ -50,12 +51,12 @@ public class Utilisateur {
 		this.solde_compte = solde_compte;
 	}
 	
-	public Utilisateur login(Utilisateur user) throws Exception
+	public int getIdUtilisateur(Utilisateur user) throws Exception
 	{
 		String requete = "select * from utilisateur where email='"+user.getEmail()+"' and mdp='"+user.getMdp()+"'";
-		Utilisateur utilisateur = new Utilisateur();
 		Connection connex = null;
 		Statement state = null;
+		Utilisateur utilisateur = new Utilisateur();
 		try
 		{
 			connex = new Connexion().setConnect();
@@ -64,16 +65,102 @@ public class Utilisateur {
 			while(rs.next())
 			{
 				utilisateur.setIdutiilisateur(rs.getInt("idutilisateur"));
-				utilisateur.setNom(rs.getString("nom"));
-				utilisateur.setPrenom(rs.getString("prenom"));
-				utilisateur.setSolde_compte(rs.getFloat("solde_compte"));
 			}
-			
 		}
 		catch(Exception e)
 		{
 			throw e;
 		}
-		return utilisateur;
+		finally
+		{
+			if(state != null)
+			{
+				
+				state.close();
+			}
+			if(connex != null)
+			{
+				connex.close();
+			}
+		}
+		return utilisateur.getIdutiilisateur();
+	}
+	
+	public Token login(Utilisateur user) throws Exception
+	{
+		Token token = new Token();
+		Connection connex = null;
+		Statement state = null;
+		try
+		{
+			connex = new Connexion().setConnect();
+			state = connex.createStatement();
+			user.setMdp(Token.toAsh(user.getMdp()));
+			int id = new Utilisateur().getIdUtilisateur(user);
+			String requete2 = "select * from token where idutilisateur='"+id+"'";
+			ResultSet rs = state.executeQuery(requete2);
+			while(rs.next())
+			{
+				token.setExpire(rs.getDate("expire"));
+				token.setIdutilisateur(rs.getInt("idutilisateur"));
+				token.setToken(rs.getString("token"));
+			}
+			System.out.print(id);
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			if(state != null)
+			{
+				
+				state.close();
+			}
+			if(connex != null)
+			{
+				connex.close();
+			}
+		}
+		return token;
+	}
+	
+	public boolean inscription(Utilisateur utilisateur) throws Exception
+	{
+		utilisateur.setMdp(Token.toAsh(utilisateur.getMdp()));
+		String requete = "insert into utilisateur values(default,'"+utilisateur.getNom()+"','"+utilisateur.getPrenom()+"','"+utilisateur.getEmail()+"','"+utilisateur.getMdp()+"','0')";
+		boolean retour = false;
+		Connection connex = null;
+		Statement state = null;
+		try
+		{
+			connex = new Connexion().setConnect();
+			state = connex.createStatement();
+			state.execute(requete);
+			int user = new Utilisateur().getIdUtilisateur(utilisateur);
+			Token token = new Token();
+			String requete2 = "insert into token values('"+token.tokengenerator(utilisateur.getEmail(), utilisateur.getMdp())+"','"+token.getExpire()+"','"+user+"')";		
+			state.execute(requete2);
+			System.out.print(user);
+			retour = true;
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			if(state != null)
+			{
+				
+				state.close();
+			}
+			if(connex != null)
+			{
+				connex.close();
+			}
+		}
+		return retour;
 	}
 }

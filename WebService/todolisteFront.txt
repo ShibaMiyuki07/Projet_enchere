@@ -9,3 +9,7 @@ FrontOffice :
 	-Ajout d'enchere(invalide si dureeajoute>dureeCategorie)
 	-Bloque l'utilisateur a participer a son propre enchere
 	-historique	
+
+	A corriger :
+		-Token inscription ts mety
+		-Token Login
