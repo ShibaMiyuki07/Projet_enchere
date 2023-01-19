@@ -47,11 +47,11 @@ public class Categorie {
 		{
 			throw e;
 		}
-		finally
+		/*finally
 		{
 			connex.close();
 			state.close();
-		}
+		}*/
 		return retour;
 	}
 	

@@ -2,6 +2,7 @@ package com.example.enchere.ControllerAdmin;
 
 import java.util.ArrayList;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,8 +28,11 @@ public class CategorieAdminController {
 	}
 	
 	@PostMapping
-	public boolean insertion(@RequestBody Categorie categorie) throws Exception
+	public boolean insertion(@RequestBody Categorie categorie, HttpServletRequest request) throws Exception
 	{
+		categorie.setCategorie(request.getParameter("categorie"));
+		String duree = request.getParameter("duree");
+		categorie.setDureeEnchereCategorie(Double.parseDouble(duree));
 		boolean cat = new Categorie().insert(categorie);
 		return cat;
 	}

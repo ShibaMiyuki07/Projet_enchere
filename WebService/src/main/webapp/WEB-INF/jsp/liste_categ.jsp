@@ -466,13 +466,13 @@
                                     <div class="form-group row">
                                         <label for="exampleInputEmail2" class="col-sm-2 col-form-label">Nom</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="exampleInputEmail2">
+                                            <input type="text" class="form-control" id="exampleInputEmail2" name="nom">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Duree Maximum</label>
                                         <div class="col-sm-5">
-                                            <input type="number" class="form-control" id="exampleInputEmail">
+                                            <input type="number" class="form-control" id="exampleInputEmail" name="duree">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-2">Inserer</button>
