@@ -51,7 +51,7 @@ public class V_Enchere_Solde {
 				V_Enchere_Solde solde = new V_Enchere_Solde();
 				solde.setIdenchere(rs.getInt("idenchere"));
 				solde.setMontant(rs.getFloat("montant"));
-				this.solde = this.solde + solde.getMontant();
+				V_Enchere_Solde.solde = V_Enchere_Solde.solde + solde.getMontant();
 				solde.setDateheureenchere(rs.getDate("dateheureenchere"));
 				liste.add(solde);
 			}

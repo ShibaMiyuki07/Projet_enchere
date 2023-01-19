@@ -100,4 +100,41 @@ public class Categorie {
 		}
 		return liste;
 	}
+	
+	public Categorie selectById(int idcategorie) throws Exception 
+	{
+		Categorie categorie = new Categorie();
+		String requete = "select * from categorie where idcategorie ='"+idcategorie+"'";
+		Connection connex = null;
+		Statement state = null;
+		try
+		{
+			connex = new Connexion().setConnect();
+			state = connex.createStatement();
+			ResultSet rs = state.executeQuery(requete);
+			while(rs.next())
+			{
+				categorie.setCategorie(rs.getString("categorie"));
+				categorie.setDureeEnchereCategorie(rs.getDouble("dureeencherecategorie"));
+			}
+			
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			if(state != null)
+			{
+				
+				state.close();
+			}
+			if(connex != null)
+			{
+				connex.close();
+			}
+		}
+		return categorie;
+	}
 }
