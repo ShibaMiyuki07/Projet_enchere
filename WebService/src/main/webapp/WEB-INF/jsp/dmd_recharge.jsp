@@ -1,14 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ASUS
-  Date: 18/01/2023
-  Time: 00:34
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.*"%>
+<%@page import="java.util.*" %>
 <%@ page import="com.example.enchere.ModelAdmin.*"%>
-<% ArrayList<Categorie> categ = (ArrayList<Categorie>) request.getAttribute("categ");%>
+<%@ page import="com.example.enchere.ModelAdmin.Vue.V_Utilisateur_Rechargement" %>
+<%ArrayList<V_Utilisateur_Rechargement> non_recharge = (ArrayList<V_Utilisateur_Rechargement>) request.getAttribute("non_recharge"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,7 +106,7 @@
                 </li>
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                        <img src="front/images/faces/face28.jpg" alt="profile" />
+                        <img src="/front/images/faces/face28.jpg" alt="profile" />
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                          aria-labelledby="profileDropdown">
@@ -295,7 +288,7 @@
                             <small class="text-muted my-auto">14 min</small>
                         </li>
                         <li class="list">
-                            <div class="profile"><img src="/front/images/faces/face4.jpg" alt="image"><span
+                            <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span
                                     class="offline"></span></div>
                             <div class="info">
                                 <p>James Richardson</p>
@@ -331,9 +324,9 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/RechargementAdmin/liste_non_valide">
+                    <a class="nav-link" href="index.html">
                         <i class="icon-grid menu-icon"></i>
-                        <span class="menu-title">Demande de recharge</span>
+                        <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -346,11 +339,11 @@
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link"
-                                                     href="/pages/ui-features/buttons.html">Buttons</a></li>
+                                                     href="pages/ui-features/buttons.html">Buttons</a></li>
                             <li class="nav-item"> <a class="nav-link"
-                                                     href="/pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                                                     href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
                             <li class="nav-item"> <a class="nav-link"
-                                                     href="/pages/ui-features/typography.html">Typography</a></li>
+                                                     href="pages/ui-features/typography.html">Typography</a></li>
                         </ul>
                     </div>
                 </li>
@@ -363,7 +356,7 @@
                     </a>
                     <div class="collapse" id="form-elements">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="/pages/forms/basic_elements.html">Basic
+                            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic
                                 Elements</a></li>
                         </ul>
                     </div>
@@ -377,7 +370,7 @@
                     </a>
                     <div class="collapse" id="charts">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="/front/pages/charts/chartjs.html">ChartJs</a>
+                            <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
                             </li>
                         </ul>
                     </div>
@@ -391,7 +384,7 @@
                     </a>
                     <div class="collapse" id="tables">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="/pages/tables/basic-table.html">Basic
+                            <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic
                                 table</a></li>
                         </ul>
                     </div>
@@ -405,7 +398,7 @@
                     </a>
                     <div class="collapse" id="icons">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="/pages/icons/mdi.html">Mdi icons</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
                         </ul>
                     </div>
                 </li>
@@ -418,9 +411,9 @@
                     </a>
                     <div class="collapse" id="auth">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="/front/pages/samples/login.html"> Login </a>
+                            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="/front/pages/samples/register.html"> Register
+                            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register
                             </a></li>
                         </ul>
                     </div>
@@ -434,15 +427,15 @@
                     </a>
                     <div class="collapse" id="error">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="/pages/samples/error-404.html"> 404 </a>
+                            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="/pages/samples/error-500.html"> 500 </a>
+                            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/pages/documentation/documentation.html">
+                    <a class="nav-link" href="pages/documentation/documentation.html">
                         <i class="icon-paper menu-icon"></i>
                         <span class="menu-title">Documentation</span>
                     </a>
@@ -454,53 +447,33 @@
             <div class="content-wrapper">
                 <div class="row">
 
-
-
-
-                    <div class="col-12 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Insert Categorie et Durée</h4>
-                                <p class="card-description"> Inserer Categorie </p>
-                                <form class="forms-sample" action="/CategorieAdmin/Insert" method="POST">
-                                    <div class="form-group row">
-                                        <label for="exampleInputEmail2" class="col-sm-2 col-form-label">Nom</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="exampleInputEmail2" name="categorie">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Duree Maximum</label>
-                                        <div class="col-sm-5">
-                                            <input type="number" class="form-control" id="exampleInputEmail" name="duree">
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mr-2">Inserer</button>
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
+                                <h4 class="card-title">Liste Demande Rechargement</h4>
                                 <p class="card-description">
-                                    Liste Categorie
+                                    CREDIT
                                 </p>
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th>Id</th>
                                             <th>Nom</th>
-
+                                            <th>Prénom</th>
+                                            <th>Montant Demander</th>
+                                            <th>Status</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <% for(int i = 0; i< categ.size(); i++){ %>
+                                        <% for(int i=0; i<non_recharge.size(); i++) { %>
                                         <tr>
-                                            <td><%= categ.get(i).getIdcategorie()%></td>
-                                            <td><%= categ.get(i).getCategorie()%></td>
+                                            <td><% out.println(non_recharge.get(i).getNom()); %></td>
+                                            <td><% out.println(non_recharge.get(i).getPrenom()); %></td>
+                                            <td>$ <% out.println(non_recharge.get(i).getMontantrecharge()); %></td>
+                                            <td>
+                                                <a class="btn btn-inverse-primary btn-fw" href="/RechargementAdmin/valide?id=<% out.println(non_recharge.get(i).getIdrechargement()); %>">Confirmer</a>
+                                                <a class="btn btn-inverse-secondary btn-fw" href="">Refuser</a>
+                                            </td>
                                         </tr>
                                         <% } %>
                                         </tbody>
@@ -509,42 +482,38 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 </div>
-
-                <!-- partial -->
             </div>
-            <!-- main-panel ends -->
+
+            <!-- partial -->
         </div>
-        <!-- page-body-wrapper ends -->
+        <!-- main-panel ends -->
     </div>
-    <!-- container-scroller -->
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
 
-    <!-- plugins:js -->
-    <script src="/front/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="/front/vendors/chart.js/Chart.min.js"></script>
-    <script src="/front/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="/front/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="/front/js/dataTables.select.min.js"></script>
+<!-- plugins:js -->
+<script src="/front/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="/front/vendors/chart.js/Chart.min.js"></script>
+<script src="/front/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="/front/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/front/js/dataTables.select.min.js"></script>
 
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="/front/js/off-canvas.js"></script>
-    <script src="/front/js/hoverable-collapse.js"></script>
-    <script src="/front/js/template.js"></script>
-    <script src="/front/js/settings.js"></script>
-    <script src="/front/js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="/front/js/dashboard.js"></script>
-    <script src="/front/js/Chart.roundedBarCharts.js"></script>
-    <!-- End custom js for this page-->
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="/front/js/off-canvas.js"></script>
+<script src="/front/js/hoverable-collapse.js"></script>
+<script src="/front/js/template.js"></script>
+<script src="/front/js/settings.js"></script>
+<script src="/front/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="/front/js/dashboard.js"></script>
+<script src="/front/js/Chart.roundedBarCharts.js"></script>
+<!-- End custom js for this page-->
 </body>
 
 </html>

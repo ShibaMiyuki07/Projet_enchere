@@ -145,7 +145,7 @@ public class Utilisateur {
 		{
 			throw e;
 		}
-		finally
+		/*finally
 		{
 			if(state != null)
 			{
@@ -155,7 +155,7 @@ public class Utilisateur {
 			{
 				connex.close();
 			}
-		}
+		}*/
 		return retour;
 	}
 	
