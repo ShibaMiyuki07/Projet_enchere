@@ -8,9 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.example.enchere.ModelAdmin.Categorie;
 
@@ -27,13 +25,17 @@ public class CategorieAdminController {
 		return "";
 	}
 	
-	@PostMapping
-	public boolean insertion(@RequestBody Categorie categorie, HttpServletRequest request) throws Exception
+	@PostMapping("/Insert")
+	public String insertion(Categorie categorie, HttpServletRequest request) throws Exception
 	{
 		categorie.setCategorie(request.getParameter("categorie"));
 		String duree = request.getParameter("duree");
 		categorie.setDureeEnchereCategorie(Double.parseDouble(duree));
 		boolean cat = new Categorie().insert(categorie);
-		return cat;
+		if(cat == true){
+			return "redirect:/Admin/LoginAdmin";
+		}else{
+			return "tsy mety";
+		}
 	}
 }

@@ -41,6 +41,7 @@ public class Categorie {
 			connex = Connexion.setConnect();
 			state = connex.createStatement();
 			state.execute(requete);
+			System.out.println(requete);
 			retour = true;
 		}
 		catch(Exception e)

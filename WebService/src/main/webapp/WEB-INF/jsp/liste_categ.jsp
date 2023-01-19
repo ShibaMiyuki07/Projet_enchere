@@ -462,11 +462,11 @@
                             <div class="card-body">
                                 <h4 class="card-title">Insert Categorie et Durée</h4>
                                 <p class="card-description"> Inserer Categorie </p>
-                                <form class="forms-sample">
+                                <form class="forms-sample" action="/CategorieAdmin/Insert" method="POST">
                                     <div class="form-group row">
                                         <label for="exampleInputEmail2" class="col-sm-2 col-form-label">Nom</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="exampleInputEmail2" name="nom">
+                                            <input type="text" class="form-control" id="exampleInputEmail2" name="categorie">
                                         </div>
                                     </div>
                                     <div class="form-group row">
