@@ -142,7 +142,7 @@ public class Enchere {
 	}
 	public ArrayList<Enchere> selectRecherche(String recherche) throws Exception
 	{
-		return selection(" v_enchere_categorie where description like '%"+recherche+"%' or categorie like '%"+recherche+"%' or date like '%"+recherche+"%' or prix like '%"+recherche+"%'");
+		return selection(" v_enchere_categorie where description like '%"+recherche+"%' or categorie like '%"+recherche+"%' or  prix like '%"+recherche+"%'");
 	}
 	
 	public boolean insertion(Enchere enchere) throws Exception
