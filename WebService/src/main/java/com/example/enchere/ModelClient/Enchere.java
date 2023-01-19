@@ -1,12 +1,13 @@
 package com.example.enchere.ModelClient;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.example.enchere.Base.Connexion;
+import com.example.enchere.ModelAdmin.Categorie;
 
 public class Enchere {
 	private int idenchere;
@@ -14,7 +15,8 @@ public class Enchere {
 	private double dureeenchere;
 	private String description;
 	private int idcategorie;
-	private Date dateheureenchere;
+	private LocalDateTime dateheureenchere;
+	private LocalDateTime datefinenchere;
 	private float prixdevente;
 	private float prixminimum;
 	private int etat;
@@ -48,10 +50,11 @@ public class Enchere {
 	public void setIdcategorie(int idcategorie) {
 		this.idcategorie = idcategorie;
 	}
-	public Date getDateheureenchere() {
+	
+	public LocalDateTime getDateheureenchere() {
 		return dateheureenchere;
 	}
-	public void setDateheureenchere(Date dateheureenchere) {
+	public void setDateheureenchere(LocalDateTime dateheureenchere) {
 		this.dateheureenchere = dateheureenchere;
 	}
 	public float getPrixdevente() {
@@ -73,6 +76,13 @@ public class Enchere {
 		this.etat = etat;
 	}
 	
+	
+	public LocalDateTime getDatefinenchere() {
+		return datefinenchere;
+	}
+	public void setDatefinenchere(LocalDateTime datefinenchere) {
+		this.datefinenchere = datefinenchere;
+	}
 	public ArrayList<Enchere> selection(String condition) throws Exception
 	{
 		String requete = "select * from enchere "+condition;
@@ -92,9 +102,10 @@ public class Enchere {
 				 enchere.setIdcategorie(rs.getInt("idcategorie"));
 				 enchere.setDureeenchere(rs.getDouble("dureeenchere"));
 				 enchere.setDescription(rs.getString("description"));
-				 enchere.setDateheureenchere(rs.getDate("dateheureenchere"));
+				 enchere.setDateheureenchere(rs.getTimestamp("dateheureenchere").toLocalDateTime());
 				 enchere.setPrixdevente(rs.getFloat("prixdevente"));
 				 enchere.setPrixminimum(rs.getFloat("prixminimum"));
+				 enchere.setDatefinenchere(rs.getTimestamp("datefinenchere").toLocalDateTime());
 				 enchere.setEtat(rs.getInt("etat"));
 				 liste.add(enchere);
 			 }
@@ -123,7 +134,7 @@ public class Enchere {
 	}
 	public ArrayList<Enchere> select_valide() throws Exception
 	{
-		return selection(" where dateheureenchere>now()");
+		return selection(" where datefinenchere>now()");
 	}
 	public ArrayList<Enchere> selectall() throws Exception
 	{
@@ -134,4 +145,48 @@ public class Enchere {
 		return selection(" where description like '%"+recherche+"%'");
 	}
 	
+	public boolean insertion(Enchere enchere) throws Exception
+	{
+		LocalDateTime now = java.time.LocalDateTime.now();
+		Long ajout = new Long((long) enchere.getDureeenchere());
+		LocalDateTime fin = now.plusHours(ajout);
+		boolean retour = false;
+		Categorie categorie = new Categorie().selectById(enchere.getIdcategorie());
+		System.out.println(now);
+		System.out.println(fin);
+		String requete = "insert into enchere values(default,'"+enchere.getIdutilisateur()+"','"+enchere.getDureeenchere()+"','"+enchere.getDescription()+"','"+enchere.getIdcategorie()+"','"+now+"','"+enchere.getPrixdevente()+"','"+enchere.getPrixminimum()+"',0,'"+fin+"')";
+		Connection connex = null;
+		Statement state = null;
+		try
+		{
+			if(enchere.getDureeenchere()>categorie.getDureeEnchereCategorie())
+			{
+				return false;
+			}
+			else
+			{
+				connex = new Connexion().setConnect();
+				state = connex.createStatement();
+				state.execute(requete);
+				retour = true;
+			}
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			if(state != null)
+			{
+				
+				state.close();
+			}
+			if(connex != null)
+			{
+				connex.close();
+			}
+		}
+		return retour;
+	}
 }

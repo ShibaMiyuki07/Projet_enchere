@@ -6,7 +6,9 @@ FrontOffice :
 	-XLogin 
 	-XSolde utilisateur
 	-XDemande de rechargement+rechargement de compte utilisateur
-	-Ajout d'enchere(invalide si dureeajoute>dureeCategorie)
+	-XAjout d'enchere(invalide si dureeajoute>dureeCategorie)
+	-XSelection enchere 
+	-Encherir sur un enchere
 	-Bloque l'utilisateur a participer a son propre enchere
 	-historique	
 
