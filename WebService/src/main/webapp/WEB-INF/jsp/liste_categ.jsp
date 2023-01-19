@@ -442,9 +442,9 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/pages/documentation/documentation.html">
+                    <a class="nav-link" href="/CommissionAdmin/list">
                         <i class="icon-paper menu-icon"></i>
-                        <span class="menu-title">Documentation</span>
+                        <span class="menu-title">Voir commission</span>
                     </a>
                 </li>
             </ul>

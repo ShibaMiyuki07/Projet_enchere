@@ -1,21 +1,32 @@
 package com.example.enchere.ControllerAdmin;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.enchere.ModelAdmin.Commission;
 
-@RestController
+import java.util.ArrayList;
+
+@Controller
 @CrossOrigin
 @RequestMapping("/CommissionAdmin")
 public class CommissionAdminController {
-	@PostMapping
-	public boolean insertion(@RequestBody Commission commission) throws Exception
+	@PostMapping("/change")
+	public boolean update(Commission commission, HttpServletRequest request) throws Exception
 	{
-		boolean com = new Commission().create(commission);
-		return com;
+		String com = request.getParameter("commission");
+		commission.setCommission(Float.parseFloat(com));
+		boolean comis = new Commission().update(commission);
+		return comis;
+	}
+
+	@GetMapping("/list")
+	public String selectAll(Model ModelAdmin) throws Exception
+	{
+		ArrayList<Commission> liste = new Commission().selectall();
+		ModelAdmin.addAttribute("comm", liste);
+		return "comission";
 	}
 }

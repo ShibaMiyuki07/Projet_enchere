@@ -1,7 +1,9 @@
 package com.example.enchere.ModelAdmin;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.example.enchere.Base.Connexion;
 
@@ -21,9 +23,9 @@ public class Commission {
 		this.commission = commission;
 	}
 	
-	public boolean create(Commission commission) throws Exception
+	public boolean update(Commission commission) throws Exception
 	{
-		String requete = "insert into commission values('"+commission.getIdenchere()+"','"+commission.getCommission()+"')";
+		String requete = "update  commission set commission = '"+commission.getCommission()+"' where idenchere != 0";
 		Connection connex = null;
 		Statement state = null;
 		boolean retour = false;
@@ -38,12 +40,42 @@ public class Commission {
 		{
 			throw e;
 		}
-		finally
+		/*finally
 		{
 			connex.close();
 			state.close();
-		}
+		}*/
 		return retour;
+	}
+
+	public ArrayList<Commission> selectall() throws Exception
+	{
+		ArrayList<Commission> liste = new ArrayList<>();
+		String requete = "select * from commission";
+		Connection connex = null;
+		Statement state = null;
+		try
+		{
+			connex = Connexion.setConnect();
+			state = connex.createStatement();
+			ResultSet rs = state.executeQuery(requete);
+			while(rs.next())
+			{
+				Commission commission = new Commission();
+				commission.setIdenchere(rs.getInt("idenchere"));
+				commission.setCommission(rs.getFloat("commission"));
+				liste.add(commission);
+			}
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		/*finally
+		{
+			connex.close();
+		}*/
+		return liste;
 	}
 	
 }

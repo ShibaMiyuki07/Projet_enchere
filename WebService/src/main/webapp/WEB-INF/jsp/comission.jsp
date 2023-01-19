@@ -1,3 +1,6 @@
+<%@ page import="java.util.*"%>
+<%@ page import="com.example.enchere.ModelAdmin.*"%>
+<% ArrayList<Commission> commission = (ArrayList<Commission>) request.getAttribute("comm"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -445,12 +448,9 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title"> Comission Actuel :</h4>
-                <p class="card-description">10%</p>
-                <form class="forms-sample">
-
-                  <button type="submit" class="btn btn-primary mr-2">Changer</button>
-
-                </form>
+                <% for(int i=0; i<commission.size(); i++) { %>
+                  <p class="card-description"><% out.println(commission.get(i).getCommission()); %> %</p>
+                <% } %>
               </div>
             </div>
           </div>
@@ -459,19 +459,11 @@
               <div class="card-body">
 
                 <p class="card-description"> Inserer Comission </p>
-                <form class="forms-sample">
+                <form class="forms-sample" action="/CommissionAdmin/change" method="post">
                   <div class="form-group row">
-                    <label for="exampleInputEmail2" class="col-sm-2 col-form-label">Nom</label>
+                    <label class="col-sm-2 col-form-label">Commission</label>
                     <div class="col-sm-5">
-                      <input type="email" class="form-control" id="exampleInputEmail2"
-                             placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Date Debut</label>
-                    <div class="col-sm-5">
-                      <input type="email" class="form-control" id="exampleInputEmail2"
-                             placeholder="Email">
+                      <input type="text" class="form-control" name="commission">
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2">Inserer</button>
