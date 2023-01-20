@@ -138,7 +138,7 @@ public class Enchere {
 	}
 	public ArrayList<Enchere> selectall() throws Exception
 	{
-		return selection("");
+		return selection(" enchere");
 	}
 	public ArrayList<Enchere> selectRecherche(String recherche) throws Exception
 	{
