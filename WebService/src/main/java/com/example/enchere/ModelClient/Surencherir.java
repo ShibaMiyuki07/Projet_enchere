@@ -91,7 +91,10 @@ public class Surencherir {
 		}
 		finally
 		{
-			connex.close();
+			if(connex != null)
+			{
+				connex.close();
+			}
 		}
 		return retour;
 	}
