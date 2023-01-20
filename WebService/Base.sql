@@ -125,3 +125,5 @@ create or replace view v_enchere_surencherir as select enchere.idenchere,dureeen
 create or replace view enchere_solde as select idenchere,max(montant) as montant,dateheureenchere from v_enchere_surencherir group by idenchere,dateheureenchere;
 
 create or replace view v_utilisateur_token as select utilisateur.*,token,expire from token,utilisateur where utilisateur.idutilisateur = token.idutilisateur;
+
+create or replace view v_enchere_categorie as select enchere.*,categorie from enchere,categorie where enchere.idCategorie = categorie.idCategorie;
