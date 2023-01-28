@@ -75,8 +75,8 @@ public class Enchere {
 	public void setEtat(int etat) {
 		this.etat = etat;
 	}
-	
-	
+
+
 	public LocalDateTime getDatefinenchere() {
 		return datefinenchere;
 	}
@@ -144,7 +144,7 @@ public class Enchere {
 	{
 		return selection(" v_enchere_categorie where description like '%"+recherche+"%' or categorie like '%"+recherche+"%'");
 	}
-	
+
 	public boolean insertion(Enchere enchere) throws Exception
 	{
 		LocalDateTime now = java.time.LocalDateTime.now();

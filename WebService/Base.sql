@@ -1,8 +1,7 @@
 Create database enchere;
-Create role enchere;
-Alter role enchere login password 'enchere';
+Create role enchere login password 'enchere';
 Alter database enchere owner to enchere;
-\c enchere;
+\c enchere enchere
 
 
 drop table surencherir;
