@@ -11,6 +11,7 @@ import com.example.enchere.ModelClient.Surencherir;
 @RestController
 @CrossOrigin
 @RequestMapping("/Surencherir")
+@CrossOrigin
 public class SurencherirController {
 	@PostMapping
 	public boolean surenchere(@RequestBody Surencherir surenchere) throws Exception

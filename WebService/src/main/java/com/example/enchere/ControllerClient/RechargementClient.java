@@ -11,6 +11,7 @@ import com.example.enchere.ModelAdmin.Rechargement;
 @RestController
 @CrossOrigin
 @RequestMapping("/Rechargement")
+@CrossOrigin
 public class RechargementClient {
 	
 	@PostMapping

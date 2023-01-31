@@ -14,6 +14,7 @@ import com.example.enchere.Util.Token;
 @RestController
 @CrossOrigin
 @RequestMapping("/Utilisateur")
+@CrossOrigin
 public class UtilisateurController {
 	@PostMapping("/login")
 	public Token login(@RequestBody Utilisateur user) throws Exception

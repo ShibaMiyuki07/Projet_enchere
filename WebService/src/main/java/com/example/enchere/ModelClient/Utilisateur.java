@@ -53,6 +53,7 @@ public class Utilisateur {
 	
 	public int getIdUtilisateur(Utilisateur user) throws Exception
 	{
+		user.setMdp(Token.toAsh(user.getMdp()));
 		String requete = "select * from utilisateur where email='"+user.getEmail()+"' and mdp='"+user.getMdp()+"'";
 		Connection connex = null;
 		Statement state = null;
@@ -62,9 +63,15 @@ public class Utilisateur {
 			connex = new Connexion().setConnect();
 			state = connex.createStatement();
 			ResultSet rs = state.executeQuery(requete);
+			int nbr = 0;
 			while(rs.next())
 			{
 				utilisateur.setIdutiilisateur(rs.getInt("idutilisateur"));
+				nbr++;
+			}
+			if(nbr == 0)
+			{
+				throw new Exception("L'utilisateur n'existe pas");
 			}
 		}
 		catch(Exception e)

@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.enchere.ModelAdmin.Admin_User;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/Admin")
+@CrossOrigin
+
 public class UserAdminController {
 	@PostMapping("/LoginAdmin")
 	public Admin_User login(@RequestBody Admin_User user) throws Exception
