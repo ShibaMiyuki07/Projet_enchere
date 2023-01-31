@@ -1,10 +1,15 @@
 package com.example.enchere.ControllerClient;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.enchere.ModelClient.Surencherir;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/Surencherir")
 @CrossOrigin
 public class SurencherirController {
