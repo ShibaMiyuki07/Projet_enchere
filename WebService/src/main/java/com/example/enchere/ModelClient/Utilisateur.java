@@ -53,6 +53,7 @@ public class Utilisateur {
 	
 	public int getIdUtilisateur(Utilisateur user) throws Exception
 	{
+		user.setMdp(Token.toAsh(user.getMdp()));
 		String requete = "select * from utilisateur where email='"+user.getEmail()+"' and mdp='"+user.getMdp()+"'";
 		Connection connex = null;
 		Statement state = null;
