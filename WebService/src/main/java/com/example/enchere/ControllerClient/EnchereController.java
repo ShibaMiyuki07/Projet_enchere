@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.enchere.ModelClient.Enchere;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/Enchere")
 @CrossOrigin
 public class EnchereController {

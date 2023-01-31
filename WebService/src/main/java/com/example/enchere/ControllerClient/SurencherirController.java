@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.enchere.ModelClient.Surencherir;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/Surencherir")
 @CrossOrigin
 public class SurencherirController {

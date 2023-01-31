@@ -12,7 +12,6 @@ import com.example.enchere.ModelClient.Utilisateur;
 import com.example.enchere.Util.Token;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/Utilisateur")
 @CrossOrigin
 public class UtilisateurController {
