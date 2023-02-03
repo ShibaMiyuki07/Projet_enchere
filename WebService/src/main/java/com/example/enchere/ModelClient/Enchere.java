@@ -194,6 +194,7 @@ public class Enchere {
 				if(date.compareTo(liste_valide.get(i).getDatefinenchere()) == 0)
 				{	
 					updateEtatById(liste_valide.get(i).getIdenchere());
+					
 				}
 			}
 	}
