@@ -6,17 +6,25 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.example.enchere.Base.Connexion;
 import com.example.enchere.ModelAdmin.Categorie;
 
+import ch.qos.logback.classic.Logger;
+
 @Component
 public class Enchere {
+	private static final Logger log = (Logger) LoggerFactory.getLogger(Enchere.class);
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	
 	private int idenchere;
 	private int idutilisateur;
 	private double dureeenchere;
@@ -174,10 +182,12 @@ public class Enchere {
 		}
 	}
 	
-	@Scheduled(fixedRate = 1)
+	@Scheduled(fixedRate =1)
 	public void changeEtat() throws Exception
 	{
+			log.info("Test de validite {}",dateFormat.format(new Date()));
 			ArrayList<Enchere> liste_valide = new Enchere().select_valide();
+			
 			for(int i=0;i<liste_valide.size();i++)
 			{
 				LocalDateTime date = LocalDateTime.now();
@@ -188,7 +198,7 @@ public class Enchere {
 			}
 	}
 	
-	@Scheduled(fixedRate = 1)
+	/*@Scheduled(fixedRate = 10)
 	public void sendNotification() throws Exception
 	{
 		try
@@ -216,15 +226,15 @@ public class Enchere {
 			}
 			catch(Exception ex)
 			{
-				throw ex;
+				System.out.print(ex.getMessage());
 			}
 		}
 		catch(Exception e)
 		{
-			throw e;
+			System.out.print(e.getMessage());
 		}
 	}
-	
+	*/
 	public boolean insertion(Enchere enchere) throws Exception
 	{
 		LocalDateTime now = java.time.LocalDateTime.now();
