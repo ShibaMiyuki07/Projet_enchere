@@ -1,5 +1,8 @@
 package com.example.enchere.ModelClient;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -183,6 +186,43 @@ public class Enchere {
 					updateEtatById(liste_valide.get(i).getIdenchere());
 				}
 			}
+	}
+	
+	@Scheduled(fixedRate = 1)
+	public void sendNotification() throws Exception
+	{
+		try
+		{
+			URL url = new URL("https://onesignal.com/api/v1/notifications");
+			HttpURLConnection co = (HttpURLConnection) url.openConnection();
+			co.setRequestMethod("POST");
+			co.setRequestProperty("Accept", "application/json");
+			co.setDoOutput(true);
+			String app_id = "30cdf2db-0abc-4fcd-b9a0-fa8e2cef546b";
+			String JsonInput = "{"+
+					" app_id : " +app_id+ ","+
+					"included_segments :["
+					+ "Suscribed Users"
+					+ "], "+
+					"contents :{"
+					+ "en : Mety"
+					+ "},"
+					+ "name : Test faharoa"+
+					"}";
+			try(OutputStream os = co.getOutputStream())
+			{
+				byte[] input = JsonInput.getBytes("utf-8");
+				os.write(input,0,input.length);
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
 	}
 	
 	public boolean insertion(Enchere enchere) throws Exception
