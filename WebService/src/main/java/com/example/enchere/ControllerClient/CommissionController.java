@@ -11,7 +11,7 @@ import com.example.enchere.ModelClient.Commission;
 
 @RestController
 @CrossOrigin
-@RequestMapping()
+@RequestMapping("/Commission")
 public class CommissionController {
 	
 	@GetMapping
