@@ -8,13 +8,13 @@ public class Connexion {
     private static String user="postgres";
     private static String passwd = "FAkbci0tk1M81H0bOl4Q";
 	private  Connection connect;
-	public  Connection setConnect() throws Exception
+	public  Connection setConnect()
 	{
 		if (connect == null) {
             try {
                 connect = DriverManager.getConnection(url, user, passwd);
             } catch (Exception e) {
-                throw e;
+                e.printStackTrace();
             }
         }
         return connect;

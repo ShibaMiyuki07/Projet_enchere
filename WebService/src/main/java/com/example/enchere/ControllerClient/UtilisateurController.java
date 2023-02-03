@@ -1,6 +1,5 @@
 package com.example.enchere.ControllerClient;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +12,6 @@ import com.example.enchere.Util.Token;
 
 @RestController
 @RequestMapping("/Utilisateur")
-@CrossOrigin
 public class UtilisateurController {
 	@PostMapping("/login")
 	public Token login(@RequestBody Utilisateur user) throws Exception
