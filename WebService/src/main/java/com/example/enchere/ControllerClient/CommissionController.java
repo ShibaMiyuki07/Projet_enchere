@@ -23,6 +23,6 @@ public class CommissionController {
 	@PostMapping
 	public void insert(@RequestBody Commission comm)
 	{
-		Commission.setCommission(comm.getCommission());
+		Commission.commission = comm.getCommission();
 	}
 }
