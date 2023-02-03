@@ -1,0 +1,58 @@
+ const login = (user : any) =>
+{
+    
+    console.log(user);
+    try
+    {
+      return axios.post("http://localhost:8080/Utilisateur/login",{
+      email : user.email,
+      mdp : user.mdp
+      }).then(data =>{
+        console.log(data);
+        /* return axios.get("http://localhost:8080/token/"+data.data['id']).then( data2 =>
+        {
+          console.log(data2);
+          var json = JSON.parse(data2.request.response);
+          if(json[0].idutilisateur === 0)
+          {
+            alert("Compte inexistant");
+          }
+          else
+          {
+            connect(true);
+            localStorage.setItem("token",json[0].token);
+            localStorage.setItem("expiration",json[0].expire);
+            document.location.href="/LoginUtilisateur";
+          }
+        });*/
+      });
+    }
+    catch(e)
+    {
+      return(
+        <IonLabel>Connexion au serveur impossible</IonLabel>
+      );
+    }
+
+    return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Se connecter</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent fullscreen>
+          <IonItem>
+            <IonLabel position='floating'>Email</IonLabel>
+            <IonInput required type='text' value='mianta@gmail.com' onIonInput={(e:any) => setUser(e.target.value)}></IonInput>
+          </IonItem>
+          <IonItem>
+            <IonLabel position='floating'>Mot de passe</IonLabel>
+            <IonInput required type='password' value='123456' onIonInput={(e:any) => setPassword(e.target.value)}></IonInput>
+          </IonItem>
+          <IonItem><IonButton onClick={submitForm}>Connect</IonButton></IonItem>
+      </IonContent>
+    </IonPage>
+  );
+};
+}

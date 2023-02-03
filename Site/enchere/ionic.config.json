@@ -1,0 +1,7 @@
+{
+  "name": "auction",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
