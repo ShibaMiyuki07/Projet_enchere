@@ -79,8 +79,6 @@ public class Surencherir {
 					ps1.execute();
 					ps2.executeUpdate();
 					retour = true;
-					System.out.println(requete);
-					System.out.println(requete2);
 					connex.commit();
 					ps1.close();
 					ps2.close();
@@ -93,11 +91,9 @@ public class Surencherir {
 		}
 		finally
 		{
-			if(connex != null)
-			{
-				connex.close();
-			}
+			connex.close();
 		}
 		return retour;
 	}
+
 }

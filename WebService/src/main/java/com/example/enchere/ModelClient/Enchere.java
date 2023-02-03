@@ -6,9 +6,13 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
 import com.example.enchere.Base.Connexion;
 import com.example.enchere.ModelAdmin.Categorie;
 
+@Component
 public class Enchere {
 	private int idenchere;
 	private int idutilisateur;
@@ -75,8 +79,8 @@ public class Enchere {
 	public void setEtat(int etat) {
 		this.etat = etat;
 	}
-
-
+	
+	
 	public LocalDateTime getDatefinenchere() {
 		return datefinenchere;
 	}
@@ -132,19 +136,55 @@ public class Enchere {
 	{
 		return selection(" enchere where idenchere='"+id+"'");
 	}
+	public ArrayList<Enchere> selectByIdDate(int id) throws Exception
+	{
+		return selection(" enchere where idutilisateur='"+id+"' order by dateheureenchere desc ");
+	}
 	public ArrayList<Enchere> select_valide() throws Exception
 	{
 		return selection(" enchere where datefinenchere>now()");
 	}
 	public ArrayList<Enchere> selectall() throws Exception
 	{
-		return selection(" enchere");
+		return selection("");
 	}
 	public ArrayList<Enchere> selectRecherche(String recherche) throws Exception
 	{
 		return selection(" v_enchere_categorie where description like '%"+recherche+"%' or categorie like '%"+recherche+"%'");
 	}
 
+	
+	public void updateEtatById(int idenchere) throws Exception
+	{
+		String requete = "update enchere set etat = '1' where idenchere ='"+idenchere+"'";
+		Connection connex = null;
+		Statement state = null;
+		try
+		{
+			connex = new Connexion().setConnect();
+			state = connex.createStatement();
+			state.execute(requete);
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+	}
+	
+	@Scheduled(fixedRate = 1)
+	public void changeEtat() throws Exception
+	{
+			ArrayList<Enchere> liste_valide = new Enchere().select_valide();
+			for(int i=0;i<liste_valide.size();i++)
+			{
+				LocalDateTime date = LocalDateTime.now();
+				if(date.compareTo(liste_valide.get(i).getDatefinenchere()) == 0)
+				{	
+					updateEtatById(liste_valide.get(i).getIdenchere());
+				}
+			}
+	}
+	
 	public boolean insertion(Enchere enchere) throws Exception
 	{
 		LocalDateTime now = java.time.LocalDateTime.now();
