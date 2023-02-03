@@ -185,7 +185,7 @@ public class Enchere {
 	@Scheduled(fixedRate =1)
 	public void changeEtat() throws Exception
 	{
-			log.info("Test de validite {}",dateFormat.format(new Date()));
+			//log.info("Test de validite {}",dateFormat.format(new Date()));
 			ArrayList<Enchere> liste_valide = new Enchere().select_valide();
 			
 			for(int i=0;i<liste_valide.size();i++)
